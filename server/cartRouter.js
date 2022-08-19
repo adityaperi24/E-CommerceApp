@@ -64,7 +64,7 @@ cartRouter.post('/:username/:productID',  async (req,res,next)=>{
     }
 
     
-    }  catch(err){
+    }  catch(err){    
      next(err)
     }
 
@@ -77,7 +77,7 @@ cartRouter.post('/:username/:productID',  async (req,res,next)=>{
 
     try{
     console.log('request received')
-    let query = 'INSERT INTO public."Cart"(username, "PID") VALUES ($1, $2)'
+    let query = 'INSERT INTO public."CartItems"(username, "PID") VALUES ($1, $2)'
     const  username  = req.params.username
 
     console.log(username)
@@ -104,7 +104,7 @@ cartRouter.delete('/:username/:productID',  async (req,res,next)=>{
 
     try{
     console.log('request received')
-    let query = 'DELETE FROM  public."Cart" where Username = $1 and "PID" = $2'
+    let query = 'DELETE FROM  public."CartItems" where Username = $1 and "PID" = $2'
     const  username  = req.params.username
 
     console.log(username)
