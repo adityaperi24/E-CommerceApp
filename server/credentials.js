@@ -1,4 +1,3 @@
-const express = require('express') 
 
 const passQuery = require('./database.js')
 
@@ -8,20 +7,15 @@ const passportHelper = require('./passport')
 
 
 const loadCredentials = async(app) => {
-app.use('/credentials', credentialsRouter)
+
+
 const passport = await passportHelper(app)
 
-const notAuthenticated = (req, res, next) => {
-  if(req.isAuthenticated()){
-    res.redirect('/')
 
-  }
-  next()
-}
 
-app.post('/LogIn', notAuthenticated, passport.authenticate("local", 
-    {failureRedirect: "/LogIn"}, (req, res) => {
-      res.redirect("profile")
+app.post('/login', passport.authenticate("local", 
+    {failureRedirect: "/login"}, (req, res) => {
+      res.redirect("/profile")
     })
     )
 
@@ -35,11 +29,10 @@ app.post('/create',  async (req,res,next)=>{
    const { username } = body
    await checkAccount(username)
    const {fullName} = body
-   const {lastName} = body
    const {password} = body
    const {contact} = body
-   const query = 'INSERT INTO public."User"("Username", "FullName", "Password", "Contact") VALUES ($1, $2, $3, $4)'
-   const params = [username,fullName,password, contact]
+   const query = 'INSERT INTO public."User"("Username", "Password", "FullName", "Contact") VALUES ($1, $2, $3, $4)'
+   const params = [username, password, fullName, contact]
 
    await passQuery(query, params)
   res.status(200).send({message: "Account Created Successfully!"})
@@ -53,7 +46,7 @@ app.post('/create',  async (req,res,next)=>{
 
 app.get('/LogOut', (req, res) => {
   req.logout()
-  res.redirect("/LogIn")
+  res.redirect("/login")
 })
 
 

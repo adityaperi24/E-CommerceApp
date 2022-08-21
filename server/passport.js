@@ -1,16 +1,22 @@
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const passQuery = require('./database.js')
+
+
+
+const passportHelper = async(app) => {
+
 app.use(passport.initialize());  
 app.use(passport.session());
 
-const passportHelper = async(app) => {
-passport.use(new LocalStrategy(
-    async(username, password, done) => {
+passport.use(
+    new LocalStrategy( async(username, password, done) => {
         let query = 'Select * from public."User" where "Username"=$1'
+        
         const params = [username]
         const accounts =  await passQuery(query, params)
         const user = accounts[0]
+
         if(err){
             return done(err)
         }
@@ -27,7 +33,7 @@ passport.use(new LocalStrategy(
 ))
 
 passport.serializeUser((user, done) => {
-    done(null, user.username)
+    done(null, user.Username)
 })
 
 passport.deserializeUser(async(username, done) => {
@@ -45,4 +51,4 @@ passport.deserializeUser(async(username, done) => {
 return passport
 }
 
-module.exports = passport
+module.exports = passportHelper

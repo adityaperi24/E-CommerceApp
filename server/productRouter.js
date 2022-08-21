@@ -5,15 +5,15 @@ productRouter = express.Router();
 
 
 
-productRouter.get('/:productID',  async (req,res,next)=>{
+productRouter.get('/:productName',  async (req,res,next)=>{
     
 
     try{
       console.log('request received')
-      const PID = req.params.productID
-     let query = 'Select * from public."Product Information" where "PID"=$1'
+      const name = req.params.productName
+     let query = 'Select * from public."Product Information" where "Name"=$1'
 
-     const params = [PID]
+     const params = [name]
     const products =  await passQuery(query, params)
     const product = products[0]
     if (! product){
@@ -32,7 +32,7 @@ productRouter.get('/:productID',  async (req,res,next)=>{
 
 })
 
-productRouter.get('/',  async (req,res,next)=>{
+productRouter.get('/type/:type',  async (req,res,next)=>{
     
 
     try{

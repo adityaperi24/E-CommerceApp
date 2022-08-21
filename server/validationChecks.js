@@ -2,7 +2,7 @@ const passQuery = require("./database")
 
  async function checkAccount(username) {
     let params = [username]
-    let query = 'Select * from public."User Information" where "Username"=$1'
+    let query = 'Select * from public."User" where "Username"=$1'
     const accounts =  await passQuery(query, params)
     if(accounts[0]){
         throw new Error(`Username Already Exists`)

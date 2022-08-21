@@ -2,12 +2,12 @@
 const express = require('express') 
 const app = express()
 const session = require('express-session')
-const flash = require('express-flash')
 
-const loadCredentials = require('./credentialsRouter')
+const loadCredentials = require('./credentials')
 
 const  productRouter = require('./productRouter')
 
+const cartRouter = require('./cartRouter')
 // Import cors for security 
 const cors = require('cors')
 
@@ -26,18 +26,20 @@ app.use(session({
   saveUninitialized: false
 }))
 
-app.use(flash())
 
+app.use(express.json())
 
 app.listen(PORT, (req,res,next)=> {
     console.log('listening at Port ' + PORT)
 })
 
-app.use(express.json())
 
 loadCredentials(app)
 
 app.use('/products', productRouter)
+
+app.use('/cart', cartRouter)
+
 
 
 
