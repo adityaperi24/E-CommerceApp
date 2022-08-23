@@ -2,7 +2,7 @@ const express = require('express')
 
 const passQuery = require('./database.js')
 cartRouter = express.Router();
-const uuidv4 = require("uuid/v4")
+const uuid = require('uuid');
 
 
 cartRouter.post('/', async(req, res, next) => {
@@ -21,7 +21,7 @@ cartRouter.post('/', async(req, res, next) => {
             }
             else {
                 query = 'INSERT INTO public."Cart"("CartID", "Date", "Username") VALUES ($1, $2, $3)'
-                const cartID = uuidv4()
+                const cartID = uuid.v4()
                 const date = new Date()
 
                 params = [cartID, date, Username]

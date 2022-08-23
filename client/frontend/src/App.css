@@ -1,16 +1,168 @@
+
+html, body {
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+}
 .App {
   text-align: center;
 }
+.realHeading {
+  background-color: #109ada;
+  color: whitesmoke;
+  text-align: center;
+  width: 100%;
+  height: 100px;
+  font-size: 50px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-style: italic;
+  font-weight: bolder;
+}
+.page{
+  background-color: rgb(25, 151, 135);
+  height: 100vh;
+  width: 100vw;
+}
+.prompttext{
+  position: relative;
+  top: 25%;
+}
+.prompttext2{
+  position: relative;
+  top: 0;
+}
+.prompt1{
+  display: inline-block;
+  background-color: rgb(198, 157, 32);
+  color: white;
+  font-weight: bolder;
+  height: 50%;
+  width: 25%;
+  text-align: center;
+  position: relative;
+  left: 50%; 
+  transform: translateX(-50%);
+  top: 10%;
+  font-size: 100%;
+  border-radius: 15%;
+  border-style: double;
+  border-color: rgb(31, 80, 104);
+  border-width: thick  5px;
+  }
+.button1{
+  display: inline;
+  background-color: rgb(36, 64, 164);
+  color: white;
+  position: absolute;
+  top: 50%;  
+  left: 25%;
+  width: 20%;
+  height: 11%;
+  font-size: 70%;
+  
+}
+button:hover{
+  color: red;
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+}
+button:active{
+  background-color: green;
+}
+.button2{
+  display: inline;
+  background-color: rgb(36, 64, 164);
+  color: white;
+  position: absolute;
+  font-size: 70%;
+  top: 50%;  
+  left: 50%;
+  width: 20%;
+  height: 11%;
+
+}
+.button3{
+  display: block;
+  background-color: rgb(36, 64, 164);
+  color: white;
+  position: relative;
+  top: 0;  
+  left: 12%;
+  width: 75%;
+  height: 10%;
+  margin-bottom:5% ;
+
+}
+.backbutton {
+  display: inline;
+  background-color: red;
+  color: white;
+  position:absolute;
+  top: 80%;
+  left: 48%;
+  width: 5%;
+  height:5%;
+  border-radius: 20%;
+  font-size: 70%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.backbutton:hover{
+  color:blue;
+}
+
+.formtitle  {
+  color: black;
+  font-style: italic;
+  font-family:Georgia, 'Times New Roman', Times, serif
+}
+label {
+  color: black;
+  font-style: italic;
+  font-family:Georgia, 'Times New Roman', Times, serif
+}
+
+input{
+  margin-top: 5%;
+  position: relative;
+  left: 12%;
+  display:block;
+  border-radius: 17%;
+  height: 100%;
+  width: 80%;
+  
+}
+
+.button4{
+ 
+  display: inline;
+  background-color: rgb(36, 64, 164);
+  color: white;
+}
+
+.submission{
+  
+  position: relative;
+  top:40%;
+  left:37%;
+  background-color: blue ;
+  color: white;
+  width: 25%;
+  height: 10%;
+}
+
+.submission:hover {
+  background-color: red;
+}
+
+.response{
+  color:black;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-style: italic;
+  text-align: justify;
+  position: relative;
+  top: 5%;
+  left: 10%;
 }
 
 .App-header {
@@ -28,6 +180,26 @@
   color: #61dafb;
 }
 
+table{
+  position: absolute;
+  left: 35%;
+  top: 20%;
+  border-collapse: collapse;
+}
+td, th {
+  border: 1px solid #999;
+  padding: 0.5rem;
+  text-align: left;
+}
+th{
+  
+  background-color: burlywood;
+  color: white;
+}
+tr {
+  background-color: rgb(37, 20, 93);
+  color: white;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

@@ -16,10 +16,9 @@ passport.use(
         const params = [username]
         const accounts =  await passQuery(query, params)
         const user = accounts[0]
+        console.log(user)
+        try{
 
-        if(err){
-            return done(err)
-        }
         if(! user) {
             return done(null, false)
         }
@@ -28,8 +27,11 @@ passport.use(
             return done(null, false)
         }
         
-        return done(err)
-    }
+        return done(null, user)
+        }catch(err) {
+            console.log(err.message)
+            return null
+        }}
 ))
 
 passport.serializeUser((user, done) => {

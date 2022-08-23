@@ -14,9 +14,9 @@ const passport = await passportHelper(app)
 
 
 app.post('/login', passport.authenticate("local", 
-    {failureRedirect: "/login"}, (req, res) => {
-      res.redirect("/profile")
-    })
+    {failureRedirect: "/login"}), (req, res) => {
+    res.send({transfer: true})
+        }
     )
 
 
@@ -25,8 +25,11 @@ app.post('/create',  async (req,res,next)=>{
     
 
   try{
+    console.log('request received')
+    console.log(req.body)
    const { body } = req;
    const { username } = body
+   console.log(username)
    await checkAccount(username)
    const {fullName} = body
    const {password} = body

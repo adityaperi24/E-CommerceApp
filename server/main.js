@@ -28,6 +28,7 @@ app.use(session({
 
 
 app.use(express.json())
+app.use(express.urlencoded({ extended: false }));
 
 app.listen(PORT, (req,res,next)=> {
     console.log('listening at Port ' + PORT)
