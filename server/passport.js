@@ -16,7 +16,6 @@ passport.use(
         const params = [username]
         const accounts =  await passQuery(query, params)
         const user = accounts[0]
-        console.log(user)
         try{
 
         if(! user) {
@@ -41,14 +40,16 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser(async(username, done) => {
     let query = 'Select * from public."User" where "Username"=$1'
     const params = [username]
+  try{
     const accounts =  await passQuery(query, params)
     const user = accounts[0]
 
-    if(err) {
-        return done(err)
-    }
+    
 
-    return done(null, user)
+    return done(null, user)}
+    catch(err){
+        consolelog(err)
+    }
 })
 return passport
 }

@@ -8,6 +8,8 @@ const loadCredentials = require('./credentials')
 const  productRouter = require('./productRouter')
 
 const cartRouter = require('./cartRouter')
+const ordersRouter = require('./ordersRouter')
+
 // Import cors for security 
 const cors = require('cors')
 
@@ -16,15 +18,22 @@ const  PORT = process.env.PORT || 3000
 
 app.use(cors({
     origin: "http://localhost:3001",
-    methods: ["GET", "PUT", "POST", "DELETE"]
+    methods: ["GET", "PUT", "POST", "DELETE"],
+    credentials: true,
 }))
 
 
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false
-}))
+app.use(
+  session({  
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: false,
+      maxAge: 24 * 60 * 60 * 1000
+    }
+  })
+);
 
 
 app.use(express.json())
@@ -40,6 +49,8 @@ loadCredentials(app)
 app.use('/products', productRouter)
 
 app.use('/cart', cartRouter)
+app.use('/orders', ordersRouter)
+
 
 
 

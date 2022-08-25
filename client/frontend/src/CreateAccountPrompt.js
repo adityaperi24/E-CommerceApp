@@ -1,9 +1,9 @@
 
 import { useState } from 'react';
 import createAccount from './api/createAccount';
-import { useHistory } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
-function CreateAccountPrompt() {
+function CreateAccountPrompt(props) {
 
     const [username, setUsername] = useState("");
     const [fullName, setFullName] = useState("");
@@ -12,12 +12,11 @@ function CreateAccountPrompt() {
     const [contact, setContact] = useState('')
     const [created, setCreated] = useState('')
     const [display, setDisplay] = useState('')
-    const history = useHistory(); 
+  const history = useNavigate(); 
 
     const redirectLogin = () =>  {
       console.log('test button')
-      history.push('/login')
-      history.go(0)
+      history('/login')
     }
     async function onCreateAccount(event)  {
       event.preventDefault()      

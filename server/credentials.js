@@ -4,6 +4,7 @@ const passQuery = require('./database.js')
 const { checkAccount } = require('./validationChecks.js')
 
 const passportHelper = require('./passport')
+const { session } = require('passport')
 
 
 const loadCredentials = async(app) => {
@@ -14,8 +15,16 @@ const passport = await passportHelper(app)
 
 
 app.post('/login', passport.authenticate("local", 
-    {failureRedirect: "/login"}), (req, res) => {
-    res.send({transfer: true})
+    {failureRedirect: "/login"}), (req, res, next) => {
+      console.log(req.session)
+      req.session.user = req.user;
+       req.session.save(function(err) {
+        next(err)
+      });
+
+        res.send({transfer: true})
+
+
         }
     )
 

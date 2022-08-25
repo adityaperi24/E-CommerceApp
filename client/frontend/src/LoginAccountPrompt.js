@@ -1,20 +1,18 @@
 
 import { useState } from 'react';
 import loginAccount from './api/loginAccount';
-import { useHistory } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
-function LoginPrompt() {
-
+function LoginPrompt(props) {
     const [username, setUsername] = useState("");
 
     const [password, setPassword] = useState("");
     const [redirect, setRedirect] = useState(false)
-    const history = useHistory(); 
-    
-    const redirectLogin = () =>  {
+      const history = useNavigate(); 
+
+    const redirectSignUp = () =>  {
       console.log('test button')
-      history.push('/login')
-      history.go(0)
+      history('/')
     }
 
     async function onLoginAccount(event)  {
@@ -24,13 +22,11 @@ function LoginPrompt() {
         const response = await loginAccount(username,password);
         console.log(response)
         if (response) {
-            history.push('/profile')
-            history.go(0)
-            return
+           history('/profile')
+           return
         }
         alert('Invalid Credentials')
-        history.push('/login')
-        history.go(0)
+        history('/login')
 
     }
 
@@ -70,7 +66,7 @@ function LoginPrompt() {
         
 
       </form>
-      <button onClick={redirectLogin}>Log in instead</button>
+      <button onClick={redirectSignUp}>Sign up instead</button>
 
 
 </div>
